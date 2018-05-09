@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'eventos',
     'enquete',
+    'material',
+    'material.frontend',
 ]
 
 MIDDLEWARE = [
