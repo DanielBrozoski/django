@@ -7,7 +7,8 @@ class Evento(models.Model):
 	evento_descricao_curta = models.CharField(max_length=500)
 	evento_data_inicio = models.DateField()
 	evento_data_termino = models.DateField()
-	evento_foto = models.ImageField(upload_to='evento', blank=True, null=True)
+	evento_icone = models.ImageField(upload_to='evento_icone', blank=True, null=True)
+	evento_banner = models.ImageField(upload_to='evento_banner', blank=True, null=True)
 	
 	def __str__(self):
 		return self.evento_nome

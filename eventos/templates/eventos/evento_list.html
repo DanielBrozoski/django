@@ -1,0 +1,16 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+	<h1>IFSC Eventos</h1>
+	<h2>Eventos disponíveis:</h2>
+	<ul>
+		{% for evento in eventos %}
+			<li>
+				<a href="{% url 'evento_detail' pk=evento.evento_id %}"><h3>{{evento.evento_nome}}</h3></a>
+				<h4>{{evento.evento_descricao_curta}}</h4>
+				<h5>De {{evento.evento_data_inicio}} a {{evento.evento_data_termino}}</h5>
+				<br>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

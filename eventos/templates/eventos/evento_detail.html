@@ -1,0 +1,25 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+	{% for evento in evento%}
+		<h1>{{evento.evento_nome}}</h1>
+		<p>{{evento.evento_descricao}}</p>
+	{%endfor%}
+
+	<h3>Atividades:</h3>
+	
+	<ul>
+		{% for atividade in atividades %}
+			<li>
+				<h4>{{atividade.atividade_nome}}</h4>
+				<p>Descrição: {{atividade.atividade_descricao}}</p>
+				<p>Local: {{atividade.atividade_local}}</p>
+				<p>Dia: {{atividade.atividade_data}}</p>
+				<p>Início: {{atividade.atividade_hora_inicio}}</p>
+				<p>Previsão de Término: {{atividade.atividade_hora_termino}}</p>
+				<br>
+			</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
