@@ -1,13 +1,39 @@
+{% extends 'enquete/base.html' %}
+
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'enquete/style.css' %}" />	
+{% block content %}
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'enquete:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Nenhuma enquete está disponível no momento.</p>
-{% endif %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% load material_form %} 
+
+
+
+<div class="row valign change-form">
+
+	<div class="col s12 m8 offset-m2 l8 offset-l2">
+	<h1><span class="card-title grey-text text-darken-2 ">Enquetes disponíveis!</span></h1>
+		
+				{% csrf_token %}
+
+				{% if latest_question_list %}
+				<ul>
+					{% for question in latest_question_list %}
+					<div class="card">
+					<h3><li><a class="card-title grey-text text-darken-2 card-content" href="{% url 'enquete:detail' question.id %}">{{ question.question_text }}</a></li></h3>
+					</div>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<p>Nenhuma enquete está disponível no momento.</p>
+				{% endif %}
+		
+	</div>
+</div>
+
+
+</form>
+
+{% endblock %}
+

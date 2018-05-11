@@ -1,9 +1,38 @@
-<h1>{{ question.question_text }}</h1>
+{% extends 'enquete/base.html' %}
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+{% block content %}
 
-<a href="{% url 'enquete:detail' question.id %}">Votar novamente?</a>
+{% load material_form %} 
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<div class="row valign change-form">
+
+	<div class="col s12 m8 offset-m2 l8 offset-l2">
+		<h1><span class="card-title grey-text text-darken-2">Resultados!</span></h1>
+		<div class="card">			
+				{% csrf_token %}
+
+				{% for choice in question.choice_set.all %}
+				<div class="col s12 required" id="id_card_type_container">
+					<div class="card-content">
+						<div class="radio" id="id_card_type">
+							<label class="grey-text text-darken-2 " for="choice{{ forloop.counter }}"><h5>
+							 {{ choice.choice_text }}: {{ choice.votes }} vote{{ choice.votes|pluralize }}<br/>		
+							</h5></label>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="right-align">
+					<a href="{% url 'enquete:index' %}" class="waves-effect waves-light btn">Voltar</a>
+				</div>
+		</div>
+	</div>
+</div>
+
+
+</form>
+
+{% endblock %}
+

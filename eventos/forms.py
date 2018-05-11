@@ -14,3 +14,19 @@ class EventoForm(forms.ModelForm):
 			'evento_icone':'Icone do evento:',
 			'evento_banner':'Banner do evento:',
 		}
+
+class AtividadeForm(forms.ModelForm):
+	class Meta:
+		model = Atividade
+		fields = ('atividade_nome', 'atividade_descricao', 'atividade_local' ,'atividade_data', 'atividade_hora_inicio', 'atividade_hora_termino', 'atividade_tags', 'atividade_pessoas', 'atividade_evento')
+		labels = {
+			'atividade_nome':'Nome da Atividade:',
+			'atividade_descricao':'Descrição:',
+			'atividade_local':'Local:',
+			'atividade_date': 'Data:',
+			'atividade_hora_inicio':'Hora de Início:',
+			'atividade_hora_termino':'Hora de Término:',
+			'atividade_tags':'Tags:',
+			'atividade_pessoas':'Responsável pela atividade:',
+			'atividade_evento': 'Evento da Atividade:',
+		}

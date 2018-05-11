@@ -23,3 +23,14 @@ def evento_detail(request, pk):
 	atividade = Atividade.objects.filter(atividade_evento=pk)
 	evento = Evento.objects.filter(pk=pk)
 	return render(request, 'eventos/evento_detail.html',{'atividades':atividade,'evento': evento})
+
+def atividade_new(request, pk):
+	if request.method == 'POST':
+		form = AtividadeForm(request.POST)
+		if form.is_valid():
+			atividade = form.save(commit=False)
+			atividade.save()
+			return redirect('atividade_detail', pk=atividade.pk)
+	else:
+		form = AtividadeForm()
+	return render(request,'eventos/atividade_new.html', {'form': form})

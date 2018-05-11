@@ -8,6 +8,6 @@ urlpatterns = [
 
 	#url(r'^(?P<pk_evento>[0-9]+)/atividade/(?P<pk_atividade>[0-9]+)/$', views.atividade_detail, name='atividade_detail'),
 	#url(r'^(?P<pk_evento>[0-9]+)/atividade/(?P<pk_atividade>[0-9]+)/editar$', views.atividade_edit, name='atividade_edit'),
-	#url(r'^(?P<pk_evento>[0-9]+)/atividade/novo/$', views.atividade_new, name='atividade_nem'),
+	url(r'^(?P<pk>[0-9]+)/atividade/novo/$', views.atividade_new, name='atividades'),
 	
 ]

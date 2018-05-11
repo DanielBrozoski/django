@@ -1,14 +1,41 @@
-<h1>{{ question.question_text }}</h1>
+{% extends 'enquete/base.html' %}
+
+{% block content %}
+
+{% load material_form %} 
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'enquete:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
+<div class="row valign change-form">
 
-<input type="submit" value="Vote" />
+	<div class="col s12 m8 offset-m2 l8 offset-l2">
+		<h1><span class="card-title grey-text text-darken-2">{{ question.question_text }}</span></h1>
+		<div class="card">
+			<form action="{% url 'enquete:vote' question.id %}" method="post" class="viewform" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				{% for choice in question.choice_set.all %}
+				<div class="col s12 required" id="id_card_type_container">
+					<div class="card-content">
+						<div class="radio" id="id_card_type">
+							<label>
+								<input type="radio" class="with-gap" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+								<span class="item-label" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</span><br />					
+							</label>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="right-align">
+					<button class="waves-effect waves-light btn" type="submit">Votar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 
 </form>
+
+{% endblock %}
+
